@@ -252,37 +252,3 @@ I approach engineering like a backend architect:
 
 </div>
 
-### Enable the Snake Animation (1-time setup)
-
-Create this file in your profile repo:
-
-`.github/workflows/snake.yml`
-
-```yml
-name: Generate Snake
-
-on:
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate Snake
-        uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: shivam8120
-          outputs: |
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-      - name: Push to output branch
-        uses: crazy-max/ghaction-github-pages@v4
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
